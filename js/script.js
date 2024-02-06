@@ -19,7 +19,7 @@ function dynamicDisplay() {
   let amountOfStudents = document.getElementById('students').value;
 
   //Even though the input is empty print the base startup price
-  if (amountOfStudents === 0 || amountOfStudents === '') {
+  if (amountOfStudents === '') {
     displayContainer.innerText = yearlyPrice
   } else {
     //Using ternary operator to check if input is valid
