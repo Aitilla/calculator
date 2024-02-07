@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <input type="number" id="students" placeholder="How many students">
+      <h3>Beregn din pris</h3>
+      <table>
+        <tr>
+          <th>Årlig pris</th>
+          <th id="yearlyPayment">180 000</th>
+          <th>nok</th>
+        </tr>
+        <tr>
+          <th>Opptsarts pris</th>
+          <th id="firstTimePayment">150 000</th>
+          <th>nok</th>
+        </tr>
+        <tr>
+          <th>Pris per student</th>
+          <th id="perStudent">27</th>
+          <th>nok</th>
+        </tr>
+      </table>
+      <label for="">Oppgi antall studenter</label>
+      <input type="text" id="students" maxlength="6" pattern="[0-9]*" />
     </div>
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
