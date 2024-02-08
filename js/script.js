@@ -11,35 +11,41 @@ const startUpPrice = parseInt(
   document.getElementById("firstTimePayment").innerHTML.replace(/\s/g, "")
 );
 
-const container = document.getElementById("container");
+const calContainer = document.getElementById("calContainer");
 
 // Regular expression to match only digits (0-9)
 const digitRegex = /^\d+$/;
 
-//Values with more to them such as creating an element(displayContainer which is created here)
+//Creating the display for the total cost
 const displayContainer = document.createElement("p");
-container.appendChild(displayContainer);
-displayContainer.id = "displaySum";
+displayContainer.id = "displayCost";
 displayContainer.innerHTML = yearlyPrice.toLocaleString();
+calContainer.appendChild(displayContainer);
 
 //Function that calculates the total price which is (amountOfStudents * 27) + 180000
 function dynamicDisplay() {
   let amountOfStudents = document.getElementById("students").value;
-  //Ignores anything but numbers (should do so)
-  amountOfStudents = amountOfStudents.replace(/\D/g, "");
 
-  //Even though the input is empty print the base startup price
-  if (amountOfStudents === "" || amountOfStudents === 0) {
-    displayContainer.innerText = yearlyPrice.toLocaleString();
-  } else {
-    //Using ternary operator to check if input is valid
-    const checkError = digitRegex.test(amountOfStudents)
+  //Using two ternary operators first to check if the field empty then if the input is valid
+  const checkInput =
+    amountOfStudents === ""
+      ? yearlyPrice.toLocaleString()
+      : digitRegex.test(amountOfStudents)
       ? (amountOfStudents * pricePerStudent + yearlyPrice).toLocaleString()
-      : "Please enter a valid number of students (digits only)";
+      : "Venligst bare tall";
 
-    displayContainer.innerText = checkError;
-  }
+  displayContainer.innerText = checkInput;
 }
 
-//Runs my function everytime anything changes within the input field
-document.getElementById("students").addEventListener("input", dynamicDisplay);
+//Blocks the input of anything but numbers 0-9, backspace, left arrow and right arrow
+document.getElementById("students").onkeydown = function (e) {
+  if (
+    (e.key < "0" || e.key > "9") &&
+    e.key !== "Backspace" &&
+    e.key !== "ArrowLeft" &&
+    e.key !== "ArrowRight"
+  ) {
+    return false;
+  }
+  document.getElementById("students").addEventListener("input", dynamicDisplay);
+};
