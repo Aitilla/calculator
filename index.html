@@ -8,7 +8,7 @@
   <body>
     <div id="calContainer">
       <h3>Beregn din pris</h3>
-      <h4>Oppstarts pris er 150 000 nok</h4>
+      <p>Oppstarts pris er 150 000 nok</p>
       <table>
         <tr>
           <th>Årlig pris</th>
@@ -19,21 +19,19 @@
           <th id="perStudent">27 nok</th>
         </tr>
       </table>
-      <label for="">Oppgi antall studenter</label> 
-      <br>
+      <div id="displayContainer">
+      <p id="amountLabel">Skriv inn antall studenter hos din institusjon:</p>
       <input type="text" id="students" maxlength="6" pattern="[0-9]*" />
+      </div>
     </div>
     <script src="js/script.js"></script>
   </body>
 </html>
 
 <style>
-  #displayCost {
-    font-size: 2.4rem;
-  }
 
   #students {
-    width: 12.6rem;
-    font-size: 2.4rem;
+    width: 3rem;
   }
+
 </style>
