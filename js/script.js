@@ -7,10 +7,6 @@ const yearlyPrice = parseInt(
   document.getElementById("yearlyPayment").innerHTML.replace(/\s/g, "")
 );
 
-const startUpPrice = parseInt(
-  document.getElementById("firstTimePayment").innerHTML.replace(/\s/g, "")
-);
-
 const calContainer = document.getElementById("calContainer");
 
 // Regular expression to match only digits (0-9)

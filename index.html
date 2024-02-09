@@ -8,26 +8,32 @@
   <body>
     <div id="calContainer">
       <h3>Beregn din pris</h3>
+      <h4>Oppstarts pris er 150 000 nok</h4>
       <table>
         <tr>
           <th>Årlig pris</th>
-          <th id="yearlyPayment">180 000</th>
-          <th>nok</th>
-        </tr>
-        <tr>
-          <th>Opptsarts pris</th>
-          <th id="firstTimePayment">150 000</th>
-          <th>nok</th>
+          <th id="yearlyPayment">180 000 nok</th>
         </tr>
         <tr>
           <th>Pris per student</th>
-          <th id="perStudent">27</th>
-          <th>nok</th>
+          <th id="perStudent">27 nok</th>
         </tr>
       </table>
-      <label for="">Oppgi antall studenter</label>
+      <label for="">Oppgi antall studenter</label> 
+      <br>
       <input type="text" id="students" maxlength="6" pattern="[0-9]*" />
     </div>
     <script src="js/script.js"></script>
   </body>
 </html>
+
+<style>
+  #displayCost {
+    font-size: 2.4rem;
+  }
+
+  #students {
+    width: 12.6rem;
+    font-size: 2.4rem;
+  }
+</style>
