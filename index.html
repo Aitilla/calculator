@@ -4,34 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      #students {
+        width: 3rem;
+      }
+      #yearlyPayment{
+        text-align: right;
+      }
+      #perStudent{
+        text-align: right;
+      }
+    </style>
   </head>
   <body>
     <div id="calContainer">
-      <h3>Beregn din pris</h3>
-      <p>Oppstarts pris er 150 000 nok</p>
+      <h2>Beregn din pris</h2>
+      <p>Oppstartspris: 150 000 kr</p>
       <table>
         <tr>
           <th>Årlig pris</th>
-          <th id="yearlyPayment">180 000 nok</th>
+          <td id="yearlyPayment">180 000 kr</td>
         </tr>
         <tr>
           <th>Pris per student</th>
-          <th id="perStudent">27 nok</th>
+          <td id="perStudent">27 kr</td>
         </tr>
       </table>
       <div id="displayContainer">
-      <p id="amountLabel">Skriv inn antall studenter hos din institusjon:</p>
-      <input type="text" id="students" maxlength="6" pattern="[0-9]*" />
+        <label for="students" id="amountLabel"
+          >Oppgi antall studenter hos din institusjon:</label
+        >
+        <br />
+        <input type="text" id="students" maxlength="6" pattern="[0-9]*" />
       </div>
     </div>
     <script src="js/script.js"></script>
   </body>
 </html>
-
-<style>
-
-  #students {
-    width: 3rem;
-  }
-
-</style>
