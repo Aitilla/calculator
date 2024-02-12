@@ -7,10 +7,8 @@ const yearlyPrice = parseInt(
   document.getElementById("yearlyPayment").innerHTML.replace(/\s/g, "")
 );
 
-const displayContainer = document.getElementById('displayContainer')
-
-//Values made for less repetition
-const yearlyString = `Pris per år: ${yearlyPrice.toLocaleString()} nok`
+const displayContainer = document.getElementById("displayContainer");
+const errorMsg = "Skriv inn et tall mellom 0-9";
 
 // Regular expression to match only digits (0-9)
 const digitRegex = /^\d+$/;
@@ -18,33 +16,36 @@ const digitRegex = /^\d+$/;
 //Creating the display for the total cost
 const displayTag = document.createElement("p");
 displayTag.id = "displayTag";
-displayTag.innerHTML = yearlyString
 displayContainer.appendChild(displayTag);
 
-//Function that calculates the total price which is (amountOfStudents * 27) + 180000
+//The magic
 function dynamicDisplay() {
   let amountOfStudents = document.getElementById("students").value;
 
-  //Using two ternary operators first to check if the field empty then if the input is valid
+  // Check if the input is empty or not a valid number
   const checkInput =
     amountOfStudents === ""
-      ? yearlyString
-      : digitRegex.test(amountOfStudents)
-      ? ( `Pris per år: ${(amountOfStudents * pricePerStudent + yearlyPrice).toLocaleString()} nok`)
-      : "Venligst bare tall";
+      ? ""
+      : !digitRegex.test(amountOfStudents)
+      ? errorMsg
+      : `Pris per år: ${(
+          (amountOfStudents < 1500
+            ? 1500
+            : amountOfStudents > 35000
+            ? 35000
+            : amountOfStudents) *
+            pricePerStudent +
+          yearlyPrice
+        ).toLocaleString()} kr`;
 
   displayTag.innerText = checkInput;
 }
 
-//Blocks the input of anything but numbers 0-9, backspace, left arrow and right arrow
-document.getElementById("students").onkeydown = function (e) {
-  if (
-    (e.key < "0" || e.key > "9") &&
-    e.key !== "Backspace" &&
-    e.key !== "ArrowLeft" &&
-    e.key !== "ArrowRight"
-  ) {
-    return false;
+//Event trigger for each input
+document.getElementById("students").addEventListener("input", (e) => {
+  if (!digitRegex.test(e.target.value)) {
+    e.target.value = e.target.value.slice(0, -1);
+    e.preventDefault();
   }
-  document.getElementById("students").addEventListener("input", dynamicDisplay);
-};
+  dynamicDisplay();
+});
