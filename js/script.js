@@ -8,7 +8,7 @@ const yearlyPrice = parseInt(
 );
 
 const displayContainer = document.getElementById("displayContainer");
-const errorMsg = "Skriv inn et tall mellom 0-9";
+const errorMsg = "Skriv inn et tall fra 0-9";
 
 // Regular expression to match only digits (0-9)
 const digitRegex = /^\d+$/;
@@ -17,6 +17,11 @@ const digitRegex = /^\d+$/;
 const displayTag = document.createElement("p");
 displayTag.id = "displayTag";
 displayContainer.appendChild(displayTag);
+displayTag.setAttribute('role', 'status');
+
+const priceTag = document.createElement("span");
+priceTag.id = "priceTag"
+displayTag.appendChild(priceTag)
 
 //The magic
 function dynamicDisplay() {
@@ -28,7 +33,7 @@ function dynamicDisplay() {
       ? ""
       : !digitRegex.test(amountOfStudents)
       ? errorMsg
-      : `Pris per år: ${(
+      : `Pris per år: ${priceTag.innerText = (
           (amountOfStudents < 1500
             ? 1500
             : amountOfStudents > 35000
@@ -36,9 +41,9 @@ function dynamicDisplay() {
             : amountOfStudents) *
             pricePerStudent +
           yearlyPrice
-        ).toLocaleString()} kr`;
+        ).toLocaleString()} kr `;
 
-  displayTag.innerText = checkInput;
+  displayTag.innerHTML = checkInput;
 }
 
 //Event trigger for each input
