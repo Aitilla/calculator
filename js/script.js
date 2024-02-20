@@ -17,34 +17,56 @@ const digitRegex = /^\d+$/;
 const displayTag = document.createElement("p");
 displayTag.id = "displayTag";
 displayContainer.appendChild(displayTag);
-displayTag.setAttribute('role', 'status');
+displayTag.setAttribute("role", "status");
+displayTag.style.display = "none"; // Hide it initially
 
+//Before price
+const beforePriceText = document.createElement("span");
+beforePriceText.textContent = "Pris per år: ";
+displayTag.appendChild(beforePriceText);
+
+//Bold price
 const priceTag = document.createElement("span");
-priceTag.id = "priceTag"
-displayTag.appendChild(priceTag)
+priceTag.id = "priceTag";
+displayTag.appendChild(priceTag);
+
+//After price
+const afterPriceText = document.createElement("span");
+afterPriceText.textContent = " kr";
+displayTag.appendChild(afterPriceText);
 
 //The magic
 function dynamicDisplay() {
   let amountOfStudents = document.getElementById("students").value;
 
-  // Check if the input is empty or not a valid number
-  const checkInput =
-    amountOfStudents === ""
-      ? ""
-      : !digitRegex.test(amountOfStudents)
-      ? errorMsg
-      : `Pris per år: ${priceTag.innerText = (
-          (amountOfStudents < 1500
-            ? 1500
-            : amountOfStudents > 35000
-            ? 35000
-            : amountOfStudents) *
-            pricePerStudent +
-          yearlyPrice
-        ).toLocaleString()} kr `;
+  // Hide display if input is empty or reset the display input if there is a number
+  displayTag.style.display = amountOfStudents === "" ? "none" : "block";
 
-  displayTag.innerHTML = checkInput;
+  //Quit early for optimization if empty
+  if (amountOfStudents === "") {
+    return;
+  }
+
+  //Returning an error if you have typed something else than a number
+  if (!digitRegex.test(amountOfStudents)) {
+    priceTag.textContent = errorMsg;
+    return;
+  }
+
+  //Equation
+  const calculatedPrice = (
+    (amountOfStudents < 1500
+      ? 1500
+      : amountOfStudents > 35000
+      ? 35000
+      : amountOfStudents) *
+      pricePerStudent +
+    yearlyPrice
+  ).toLocaleString();
+
+  priceTag.textContent = calculatedPrice;
 }
+
 
 //Event trigger for each input
 document.getElementById("students").addEventListener("input", (e) => {
