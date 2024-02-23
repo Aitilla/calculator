@@ -18,7 +18,6 @@ const displayTag = document.createElement("p");
 displayTag.id = "displayTag";
 displayContainer.appendChild(displayTag);
 displayTag.setAttribute("role", "status");
-displayTag.style.display = "none"; // Hide it initially
 
 //Before price
 const beforePriceText = document.createElement("span");
@@ -62,7 +61,7 @@ function dynamicDisplay() {
       : amountOfStudents) *
       pricePerStudent +
     yearlyPrice
-  ).toLocaleString();
+  ).toLocaleString('nb');
 
   priceTag.textContent = calculatedPrice;
 }
